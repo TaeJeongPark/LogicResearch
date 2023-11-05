@@ -23,6 +23,10 @@ public class EasyMovement {
 
     public static void main(String[] args) {
 
+        /*
+         * 더미 데이터 생성
+         */
+
         // 기존의 배송지 목록
         List<Map<String, Object>> shippingList = new ArrayList<>();
         shippingList.add(new HashMap<String, Object>() {{
@@ -81,6 +85,11 @@ public class EasyMovement {
         }});
 
         System.out.println("==========> 변경할 배송지 리스트 : " + changeList);
+
+        /*
+         * 더미 데이터 생성
+         */
+
 
         int changeNum = 3;   // 간편이동 할 번호
 
