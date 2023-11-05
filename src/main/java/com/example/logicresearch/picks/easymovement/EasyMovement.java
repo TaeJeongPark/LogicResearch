@@ -71,20 +71,23 @@ public class EasyMovement {
         }});
 
         changeList.add(new HashMap<String, Object>() {{
-            put("id", 8);
+            put("id", 7);
             put("sequence", 3);
         }});
 
         changeList.add(new HashMap<String, Object>() {{
-            put("id", 10);
+            put("id", 8);
             put("sequence", 4);
         }});
 
         System.out.println("==========> 변경할 배송지 리스트 : " + changeList);
 
-        final int changeNum = 4;   // 간편이동 할 번호
-        int changeNumCnt = changeNum - 1;   // 간편이동 할 번호
-        int maintainNum = 1; // 유지할 번호
+        int changeNum = 3;   // 간편이동 할 번호
+
+        if(changeNum == shippingList.size()) changeNum--;   // 간편이동 할 번호가 배송지 목록의 크기와 같을 경우 간편이동 할 번호를 1 감소
+
+        int changeNumCnt = changeNum - 1;   // 간편이동 할 번호 인덱싱
+        int maintainNum = 1; // 유지할 번호 인덱싱
 
         // 배송지 순서 변경 로직
         for(Map<String, Object> shippingListItem : shippingList) {
@@ -98,17 +101,18 @@ public class EasyMovement {
                 }
             }
         }
+        System.out.println("==========> 1차 변경된 배송지 목록 : " + shippingList);
         for(Map<String, Object> shippingListItem : shippingList) {
             if(shippingListItem.get("sequence").equals(0)) {
                 shippingListItem.replace("sequence", maintainNum);
                 maintainNum++;
-                if(maintainNum == changeNum) {
-                    maintainNum += (changeList.size() - 1);
+                if(maintainNum == (changeNum - 1)) {
+                    maintainNum += (changeList.size());
                 }
             }
         }
 
-        System.out.println("==========> 변경된 배송지 목록 : " + shippingList);
+        System.out.println("==========> 2차 변경된 배송지 목록 : " + shippingList);
 
     }
 
